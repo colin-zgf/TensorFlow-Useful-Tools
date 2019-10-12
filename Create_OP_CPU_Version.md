@@ -2,14 +2,13 @@
 
 In this secion, an CPU version user defined OP is created and tested. Please make sure that you have installed tensorflow successfully on your computer. The operation is implemented on Ubuntu system. The steps of generating CPU version OP are listed below:
 
-Step1: create **user_ops** folder under tensorflow "core" directory 
-(e.g. /user/local/lib/python3.5/dist_packages/tensorflow/core)
+## Step1: create **user_ops** folder under tensorflow "core" directory (e.g. /user/local/lib/python3.5/dist_packages/tensorflow/core)
 
 ~~~
 sudo mkdir user_ops
 ~~~
 
-Step2: Create c++ file. 
+## Step2: Create c++ file. 
 
 ~~~
 sudo touch my_add.cc
@@ -61,3 +60,41 @@ class MyAddOp : public OpKernel {
 };
 REGISTER_KERNEL_BUILDER(Name("MyAdd").Device(DEVICE_CPU), MyAddOp);
 ~~~
+
+## Step3: Compile the code
+
+* In python2
+~~~
+TF_INC=$(python -c 'import tensorflow as tf; print(tf.sysconfig.get_include())')
+TF_LIB=$(python -c 'import tensorflow as tf; print(tf.sysconfig.get_lib())')
+g++ -std=c++11 -shared my_add.cc -o my_add.so -fPIC -I$TF_INC -I$TF_INC/external/nsync/public -L$TF_LIB -ltensorflow_framework -O2
+~~~
+
+* In python3
+
+~~~
+TF_INC=$(python3.5 -c 'import tensorflow as tf; print(tf.sysconfig.get_include())')
+TF_LIB=$(python3.5 -c 'import tensorflow as tf; print(tf.sysconfig.get_lib())')
+g++ -std=c++11 -shared my_add.cc -o my_add.so -fPIC -I$TF_INC -I$TF_INC/external/nsync/public -L$TF_LIB -ltensorflow_framework -O2
+~~~
+
+## Step4: Test the code
+
+After Step3, now we can test the code.
+
+~~~
+import tensorflow as tf
+
+so_file = '/user/local/lib/python3.5/dist_packages/tensorflow/core/user_ops/my_add.so'
+
+if __name__ == "__main__":
+  #tf.test.main()
+  my_add_module = tf.load_op_library(so_file)
+  out = my_add_module.my_add([5, 4, 3, 2, 1],[1, 2, 3, 4, 5])
+  sess = tf.Session()
+  result = sess.run(out)
+  print(result)
+~~~
+
+The output should be
+[0, 6, 6, 6, 6]
