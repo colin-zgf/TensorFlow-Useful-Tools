@@ -85,16 +85,13 @@ After Step3, now we can test the code.
 ~~~
 import tensorflow as tf
 
-so_file = '/user/local/lib/python3.5/dist_packages/tensorflow/core/user_ops/my_add.so'
+so_file = '/usr/local/lib/python3.5/dist-packages/tensorflow/core/user_ops/cuda_op_kernel.so'
+cuda_op_module = tf.load_op_library(so_file)
 
-if __name__ == "__main__":
-  #tf.test.main()
-  my_add_module = tf.load_op_library(so_file)
-  out = my_add_module.my_add([5, 4, 3, 2, 1],[1, 2, 3, 4, 5])
-  sess = tf.Session()
-  result = sess.run(out)
-  print(result)
+with tf.Session(''):
+    x = cuda_op_module.add_one([[6, 4], [2, 4]]).eval()
+print(x)
 ~~~
 
 The output should be
-[0, 6, 6, 6, 6]
+[0, 6]
