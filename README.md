@@ -3,7 +3,7 @@
 <table>
   <tr>
     <td><img src="images/TF.jpg?raw=true" height="260px" width="400px"></td>
-    <td><img src="image/python.jpg?raw=true" height="260px" width="400px"></td>
+    <td><img src="images/python.jpg?raw=true" height="260px" width="400px"></td>
   </tr>
 </table>
 
