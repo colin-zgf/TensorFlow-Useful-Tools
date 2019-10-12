@@ -12,4 +12,9 @@ This is my own experience about some useful tools of TensorFlow. If you have any
 
 **guangfeishanghai@sina.com** or **zhuguangfei6699@gmail.com**
 
+## Contents
 
+The following are included:
+
+- [Create CPU version OP](https://github.com/colin-zgf/TensorFlow-Useful-Tools/blob/master/Create_OP_CPU_Version.md)
+- [Create GPU version OP](https://github.com/colin-zgf/TensorFlow-Useful-Tools/blob/master/Create_OP_GPU_Version.md)
