@@ -19,3 +19,4 @@ The following are included:
 - [Create CPU version OP](https://github.com/colin-zgf/TensorFlow-Useful-Tools/blob/master/Create_OP_CPU_Version.md)
 - [Create GPU version OP](https://github.com/colin-zgf/TensorFlow-Useful-Tools/blob/master/Create_OP_GPU_Version.md)
 - [Generate PB model based on OP](https://github.com/colin-zgf/TensorFlow-Useful-Tools/blob/master/generate_pb_based_on_op.py)
+- [Load OP-generated PB model](https://github.com/colin-zgf/TensorFlow-Useful-Tools/blob/master/load_op_generated_pb.py)
