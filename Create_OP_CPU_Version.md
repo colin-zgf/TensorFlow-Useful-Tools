@@ -83,6 +83,8 @@ g++ -std=c++11 -shared my_add.cc -o my_add.so -fPIC -I$TF_INC -I$TF_INC/external
 After Step3, now we can test the code.
 
 ~~~
+import tensorflow as tf
+
 so_file = '/usr/local/lib/python3.5/dist-packages/tensorflow/core/user_ops/my_add.so'
 op_module = tf.load_op_library(so_file)
 
