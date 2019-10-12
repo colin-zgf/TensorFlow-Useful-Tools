@@ -94,7 +94,7 @@ nvcc -std=c++11 -c -o cuda_op_kernel.cu.o cuda_op_kernel.cu.cc ${TF_CFLAGS[@]} -
 g++ -std=c++11 -shared -o cuda_op_kernel.so cuda_op_kernel.cc cuda_op_kernel.cu.o ${TF_CFLAGS[@]} -fPIC -lcudart ${TF_LFLAGS[@]} -L /usr/local/cuda-9.0/lib64/
 ~~~
 
-**Note, the last part '-L /usr/local/cuda-9.0/lib64/' is to call the library of cuda. Sometimes, it will raise some loading error for TensorFlow if one does not write it.**
+**Note, the last part '-L /usr/local/cuda-9.0/lib64/' is to call the library of cuda. Sometimes, it will raise some loading error for TensorFlow if one does not write it. You needs to find your cuda directory in your computer and replace that part.**
 
 ## Step4: Test the code
 
